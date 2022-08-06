@@ -1,0 +1,7 @@
+{
+  "method": "SUBSCRIBE",
+  "params": [
+    "!bookTicker"
+  ],
+  "id": 1
+}
