@@ -18,8 +18,8 @@ public class InMemoryBinanceRepository implements IBinanceRepository {
     }
 
     @Override
-    public Optional<OrderBook> getOrderBook(String instrument) {
-        OrderBook orderBook = orderBooks.get(instrument);
+    public Optional<OrderBook> getOrderBook(String symbol) {
+        OrderBook orderBook = orderBooks.get(symbol);
         if (orderBook == null) {
             return Optional.empty();
         }
@@ -32,8 +32,8 @@ public class InMemoryBinanceRepository implements IBinanceRepository {
     }
 
     @Override
-    public void addOrUpdateOrderBook(String instrument, OrderBook orderBook) {
-        orderBooks.put(instrument, orderBook);
+    public void addOrUpdateOrderBook(String symbol, OrderBook orderBook) {
+        orderBooks.put(symbol, orderBook);
     }
 
 }

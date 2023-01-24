@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BinanceSocketService implements IBinanceSocketService {
@@ -34,5 +35,10 @@ public class BinanceSocketService implements IBinanceSocketService {
     @Override
     public Collection<OrderBook> getOrderBookCollection() {
         return binanceRepository.getOrderBooks();
+    }
+
+    @Override
+    public Optional<OrderBook> getOrderBook(String symbol) {
+        return binanceRepository.getOrderBook(symbol);
     }
 }

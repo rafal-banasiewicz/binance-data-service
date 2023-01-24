@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IBinanceRepository {
 
-    Optional<OrderBook> getOrderBook(String instrument);
+    Optional<OrderBook> getOrderBook(String symbol);
     Collection<OrderBook> getOrderBooks();
-    void addOrUpdateOrderBook(String instrument, OrderBook orderBook);
+    void addOrUpdateOrderBook(String symbol, OrderBook orderBook);
 }

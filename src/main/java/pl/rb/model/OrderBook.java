@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class OrderBook {
-    String instrument;
+    String symbol;
     String bid;
     String ask;
 }

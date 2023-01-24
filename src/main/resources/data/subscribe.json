@@ -1,7 +1,8 @@
 {
   "method": "SUBSCRIBE",
   "params": [
-    "!bookTicker"
+    "btcusdt@bookTicker",
+    "ethusdt@bookTicker"
   ],
   "id": 1
 }

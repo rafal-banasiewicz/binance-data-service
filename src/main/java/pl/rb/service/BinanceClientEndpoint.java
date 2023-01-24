@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import pl.rb.model.BinanceBookTicker;
+import pl.rb.model.BinanceStreamData;
 import pl.rb.model.OrderBook;
 import pl.rb.repository.IBinanceRepository;
 
@@ -49,16 +50,17 @@ public class BinanceClientEndpoint {
     @OnMessage
     public void processMessage(String message) throws JsonProcessingException {
         try {
-            BinanceBookTicker bookTicker = mapper.readValue(message, BinanceBookTicker.class);
+            BinanceStreamData streamData = mapper.readValue(message, BinanceStreamData.class);
             OrderBook orderBook = OrderBook.builder()
-                    .instrument(bookTicker.getSymbol())
-                    .bid(bookTicker.getBid())
-                    .ask(bookTicker.getAsk())
+                    .symbol(streamData.getData().getSymbol())
+                    .bid(streamData.getData().getBid())
+                    .ask(streamData.getData().getAsk())
                     .build();
-            binanceRepository.addOrUpdateOrderBook(orderBook.getInstrument(), orderBook);
+            binanceRepository.addOrUpdateOrderBook(orderBook.getSymbol(), orderBook);
         } catch (UnrecognizedPropertyException e) {
-            Logger.getLogger("Skipped unknown object");
+            Logger.getLogger("Skipped unknown object").log(Level.SEVERE, null, e);
         }
+
     }
 
     @OnError

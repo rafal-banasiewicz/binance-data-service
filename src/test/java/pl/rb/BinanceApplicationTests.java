@@ -46,7 +46,7 @@ class BinanceApplicationTests {
     public void contextLoads() {
         OrderBook orderBook = new OrderBook("BTCUSDT", "40000.01", "40010.53");
         List<OrderBook> orderBooks = socketService.getOrderBookCollection().stream().toList();
-        assertEquals(orderBooks.get(0).getInstrument(), orderBook.getInstrument());
+        assertEquals(orderBooks.get(0).getSymbol(), orderBook.getSymbol());
         assertEquals(orderBooks.get(0).getBid(), orderBook.getBid());
         assertEquals(orderBooks.get(0).getAsk(), orderBook.getAsk());
         assertEquals(orderBooks.get(0), orderBook);
